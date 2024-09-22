@@ -9,7 +9,8 @@ const Footer = () => {
         © 2024 Copyright:
         <a
           className="p-5 text-center text-amber-500 dark:bg-neutral-200"
-          href="https://bcampdat.com/"
+          href="https://www.linkedin.com/in/beatriz-gonzalez-ju%C3%A1rez/" 
+          target="_blank"
         >
           Made with ♥️ and <b>React.js</b> by <b> bcampdat </b>
         </a>
