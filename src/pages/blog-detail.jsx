@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
-import parse from 'html-react-parser';
+import parse from "html-react-parser";
 import BlogForm from "../components/Blog/blog-form";
 import BlogFeaturedImage from "../components/Blog/blog-featured-image";
 import { UserContext } from "../components/auth/userContext";
@@ -76,7 +76,7 @@ const BlogDetail = () => {
             <BlogFeaturedImage img={featured_image} />
           </div>
           <div className="content mr-0 md:mr-20 my-auto text-justify p-7 text-lg font-medium dark:text-white">
-            {parse(content)}
+            {content ? parse(content) : "No content available"}
           </div>
         </div>
       );
