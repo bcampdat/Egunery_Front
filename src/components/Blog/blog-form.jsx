@@ -77,7 +77,7 @@ const BlogForm = ({ post, isEdit, handleSuccessfulNewBlogSubmission }) => {
         postId = post.id;
       } else {
         const postResponse = await axios.post(
-          `/api/posts/create`,	
+          `${import.meta.env.VITE_BACKEND_URL}/api/posts/create`,	
           formData,
           {
             headers: { "Content-Type": "multipart/form-data" },

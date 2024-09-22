@@ -7,7 +7,7 @@ const BlogFeaturedImage = ({ img, altText = "Blog featured image" }) => {
   }
  
   const imgUrl = img.startsWith("/MyUploads")
-    ? `http://localhost:3001${img}` 
+    ? `${import.meta.env.VITE_BACKEND_URL}${img}` 
     : img;
 
   return (
