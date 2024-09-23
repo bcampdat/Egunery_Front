@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <footer className="dark:text-neutral-700 text-center lg:text-left">
       {/* <img src={Logo} alt="" /> */}
-      <div className="p-5 text-center text-amber-500 dark:bg-neutral-200 ">
+      <div className="p-5 text-center text-amber-300 dark:bg-neutral-200 ">
         © 2024 Copyright:
         <a
           className="p-5 text-center text-amber-300 dark:bg-neutral-200"
