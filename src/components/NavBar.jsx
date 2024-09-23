@@ -29,7 +29,7 @@ const NavBar = () => {
   };
 
   return (
-    <nav className="nav-wrapper px-10  text-3xl dark:bg-gray-400 dark:text-white w-full mt-10">
+    <nav className="nav-wrapper px-10  text-3xl dark:text-white w-full mt-10">
       <div className="navbar flex items-center justify-between">
         <h1 className="logo wind-effect dark:text-white"><img src={logo} alt="logo" width={100} /></h1>
         <div className="md:hidden">
