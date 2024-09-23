@@ -59,7 +59,7 @@ const NavBar = () => {
           </button>
         </div>
         <ul
-          className={`md:flex md:items-center md:space-x-5 absolute top-24 right-4  ${
+          className={`md:flex md:items-center md:space-x-5 ${
             isMenuOpen ? "block" : "hidden"  
           }`}
         >

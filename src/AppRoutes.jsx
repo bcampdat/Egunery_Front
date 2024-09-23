@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
-import { UserContext } from "./components/auth/userContext"; // Importar el contexto del usuario
+import { UserContext } from "./components/auth/userContext"; 
 
 import NavBar from "./components/NavBar";
 import Home from "./pages/home";

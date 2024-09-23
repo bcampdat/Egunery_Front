@@ -1,5 +1,5 @@
 import React from "react";
-import { UserProvider } from "./components/auth/userContext"; // Importar UserProvider
+import { UserProvider } from "./components/auth/userContext"; 
 import AppRoutes from "./AppRoutes"; // Importar el componente que maneja las rutas
 
 import "./App.css";
