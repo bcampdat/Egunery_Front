@@ -55,7 +55,7 @@ const Login = () => {
       {error && <div className="text-red-500 mb-4">{error}</div>}
       {!user ? (
         <form className="flex flex-col" onSubmit={handleLogin}>
-          <CgUserlane className="lg:w-16 lg:h-16 mx-auto text-center text-gray-700" />
+          <CgUserlane className="lg:w-14 lg:h-14 mx-auto text-center text-gray-700 mb-4" />
           <div className="mb-4">
             <label
               className="block text-gray-700 text-sm font-bold mb-2"

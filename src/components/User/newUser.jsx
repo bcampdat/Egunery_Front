@@ -145,7 +145,7 @@ const NewUser = () => {
 
         <button
           type="submit"
-          className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg mt-4"
+          className="bg-sky-400 hover:bg-sky-300 text-white font-bold py-2 px-4 rounded-lg mt-4"
         >
           Registrar usuario
         </button>
