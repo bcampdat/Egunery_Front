@@ -27,7 +27,7 @@ const Home = () => {
         lottieRef={animationRef}
         loop={true}
         animationData={animationData}
-        style={{ width: 600, height: 600 }}
+        style={{ width: "80vw", height: "80vw" }}
       />
     </div>
   );
