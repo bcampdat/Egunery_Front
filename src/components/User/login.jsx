@@ -68,7 +68,7 @@ const Login = () => {
               id="username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              className="appearance-none p-2 pl-10 text-sm text-gray-700 rounded-lg focus:ring-2 focus:ring-blue-600"
+              className="appearance-none bg-white p-2 text-sm text-gray-700 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600"
             />
           </div>
           <div className="mb-4">

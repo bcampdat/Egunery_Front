@@ -70,7 +70,7 @@ const NewUser = () => {
             id="username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            className="p-2 text-sm text-gray-700 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600"
+            className="appearance-none bg-white p-2 text-sm text-gray-700 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600"
             required
           />
         </div>
@@ -86,7 +86,7 @@ const NewUser = () => {
             id="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="p-2 text-sm text-gray-700 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600"
+            className="appearance-none bg-white p-2 text-sm text-gray-700 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600"
             required
           />
         </div>
@@ -102,7 +102,7 @@ const NewUser = () => {
             id="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="p-2 text-sm text-gray-700 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600"
+            className="appearance-none bg-white p-2 text-sm text-gray-700 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600"
             required
           />
         </div>
