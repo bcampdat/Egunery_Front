@@ -12,7 +12,7 @@ const Login = () => {
 
   const handleLogin = (event) => {
     event.preventDefault();
-      
+
     axios
       .post(`${import.meta.env.VITE_BACKEND_URL}/api/users/login`, {
         username: username,
@@ -55,7 +55,7 @@ const Login = () => {
       {error && <div className="text-red-500 mb-4">{error}</div>}
       {!user ? (
         <form className="flex flex-col" onSubmit={handleLogin}>
-          <CgUserlane className="lg:w-16 lg:h-16 mx-auto text-center text-gray-700 mb-4" />
+          <CgUserlane className="w-10 h-10 md:w-16 md:h-16 mx-auto text-center text-gray-700 mb-4" />
           <div className="mb-4">
             <label
               className="block text-gray-700 text-sm font-bold mb-2"
