@@ -3,7 +3,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer className="dark:text-neutral-700 text-center lg:text-left">
+    <footer className="mt-10 dark:text-neutral-700 text-center lg:text-left">
       {/* <img src={Logo} alt="" /> */}
       <div className="p-5 text-center text-amber-300">
         © 2024 Copyright

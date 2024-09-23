@@ -6,8 +6,8 @@ const Home = () => {
   const animationRef = useRef(null);
 
   return (
-    <div className="min-h-screen flex justify-center items-center lg:mx-48">
-      <div className=" dark:text-white">
+    <div className="min-h-screen flex flex-col lg:flex-row justify-center items-center lg:mx-48">
+      <div className=" dark:text-white order-last lg:order-none">
         <div className="flex gap-2 justify-center">
           <button
             className="bg-sky-300 text-white font-semibold py-2 px-4 rounded-lg hover:bg-amber-300 transition-colors duration-300"
