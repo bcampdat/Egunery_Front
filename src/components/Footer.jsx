@@ -12,7 +12,7 @@ const Footer = () => {
           href="https://www.linkedin.com/in/beatriz-gonzalez-ju%C3%A1rez/" 
           target="_blank"
         >
-          Made with ♥️ and <b>React.js</b> by <b> bcampdat </b>
+          <b>React.js</b> by <b> Bcampdat </b>
         </a>
       </div>
     </footer>
