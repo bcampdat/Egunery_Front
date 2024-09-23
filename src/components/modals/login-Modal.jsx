@@ -42,7 +42,7 @@ const LoginModal = ({ isOpen, onRequestClose }) => {
         className="absolute top-2 right-2 p-2 bg-gray-200 rounded-full hover:bg-gray-300 focus:outline-none"
         aria-label="Close"
       >
-        <span className="text-gray-600">&times;</span>
+        <span className="text-gray-600 text-xl">&times;</span>
       </button>
       {showLogin ? (
         <>
@@ -52,7 +52,7 @@ const LoginModal = ({ isOpen, onRequestClose }) => {
             ¿No tienes una cuenta?{" "}
             <button
               onClick={() => setShowLogin(false)}
-              className="text-slate-500 hover:underline"
+              className="text-blue-700 hover:underline"
             >
               Regístrate aquí
             </button>
@@ -66,7 +66,7 @@ const LoginModal = ({ isOpen, onRequestClose }) => {
             ¿Ya tienes una cuenta?{" "}
             <button
               onClick={() => setShowLogin(true)}
-              className="text-slate-500 hover:underline"
+              className="text-blue-700 hover:underline"
             >
               Inicia sesión aquí
             </button>
