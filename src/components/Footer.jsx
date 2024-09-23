@@ -5,10 +5,10 @@ const Footer = () => {
   return (
     <footer className="dark:text-neutral-700 text-center lg:text-left">
       {/* <img src={Logo} alt="" /> */}
-      <div className="p-5 text-center text-amber-300 dark:bg-neutral-200 ">
+      <div className="p-5 text-center text-amber-300">
         © 2024 Copyright:
         <a
-          className="p-5 text-center text-amber-300 dark:bg-neutral-200"
+          className="p-5 text-center text-amber-300"
           href="https://www.linkedin.com/in/beatriz-gonzalez-ju%C3%A1rez/" 
           target="_blank"
         >
