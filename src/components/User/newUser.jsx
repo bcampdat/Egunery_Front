@@ -37,7 +37,7 @@ const NewUser = ({ onRequestClose }) => {
           .then((loginResponse) => {
             // Llamamos a loginUser del contexto para guardar los datos del usuario y token
             loginUser(loginResponse.data.user, loginResponse.data.token);
-            setError("");
+            // setError("");
             // Redirigir a la página principal (home) después del login exitoso
             onRequestClose(); 
             navigate("/home");
