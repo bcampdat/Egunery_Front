@@ -55,7 +55,7 @@ export default function About() {
             </div>
           </li>
           <li className="flex items-start">
-            <FaMapMarkedAlt className="text-4xl text-blue-800 mr-3" />
+            <FaMapMarkedAlt className="text-4xl text-amber-300 mr-3" />
             <div className="text-lg">
               <strong>Navegación GPS en Tiempo Real:</strong>
               <br />

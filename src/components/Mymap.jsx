@@ -12,7 +12,7 @@ const MyMap = () => {
   const mapContainerRef = useRef(null);
   const [map, setMap] = useState(null);
   const [marker, setMarker] = useState(null);
-  const [userCoords, setUserCoords] = useState(null);
+ 
 
   const { user } = useContext(UserContext);
 
@@ -27,8 +27,6 @@ const MyMap = () => {
     function dibujarMapa(dataGeo) {
       const latitud = dataGeo.coords.latitude;
       const longitud = dataGeo.coords.longitude;
-
-      setUserCoords([longitud, latitud]);
 
       const mapInstance = new mapboxgl.Map({
         container: mapContainerRef.current,
