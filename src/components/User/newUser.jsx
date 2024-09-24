@@ -1,15 +1,15 @@
 import React, { useState, useContext } from "react";
 import axios from "axios";
 import { FaUserAstronaut, FaUserNinja, FaUserSecret } from "react-icons/fa";
-import { UserContext } from "../auth/userContext";
-import { useNavigate } from "react-router-dom";
+import { UserContext } from "../auth/userContext"; 
+import { useNavigate } from "react-router-dom"; 
 
 const NewUser = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [fotoUsers, setFotoUsers] = useState("astronauta"); // Astronauta por defecto
-  const { loginUser } = useContext(UserContext);
+  const { loginUser } = useContext(UserContext); 
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const navigate = useNavigate(); // Para redirigir al usuario
@@ -28,26 +28,22 @@ const NewUser = () => {
         console.log(response.data);
         setSuccess("Usuario creado exitosamente!");
 
-        setTimeout(() => {
-          console.log("Intentando iniciar sesión con:", { username, password }); // Verifica qué se envía en la solicitud de login
-
-          // Iniciar sesión automáticamente después del registro
-          axios
-            .post(`/api/users/login`, {
-              username,
-              password,
-            })
-            .then((loginResponse) => {
-              // Llamamos a loginUser del contexto para guardar los datos del usuario y token
-              loginUser(loginResponse.data.user, loginResponse.data.token);
-              setError("");
-              // Redirigir a la página principal (home) después del login exitoso
-              navigate("/home");
-            })
-            .catch((loginError) => {
-              setError("");
-            });
-        }, 2000); // Cerrar aquí el setTimeout correctamente
+        // Iniciar sesión automáticamente después del registro
+        axios
+          .post(`/api/users/login`, {
+            username,
+            password,
+          })
+          .then((loginResponse) => {
+            // Llamamos a loginUser del contexto para guardar los datos del usuario y token
+            loginUser(loginResponse.data.user, loginResponse.data.token);
+            setError("");
+            // Redirigir a la página principal (home) después del login exitoso
+            navigate("/home");
+          })
+          .catch((loginError) => {
+            setError("Error al iniciar sesión.");
+          });
       })
       .catch((error) => {
         console.error(error);
