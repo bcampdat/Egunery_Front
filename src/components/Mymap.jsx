@@ -12,7 +12,7 @@ const MyMap = () => {
   const mapContainerRef = useRef(null);
   const [map, setMap] = useState(null);
   const [marker, setMarker] = useState(null);
-  const [userCoords, setUserCoords] = useState(null);
+  
 
   const { user } = useContext(UserContext);
 
@@ -27,8 +27,6 @@ const MyMap = () => {
     function dibujarMapa(dataGeo) {
       const latitud = dataGeo.coords.latitude;
       const longitud = dataGeo.coords.longitude;
-
-      setUserCoords([longitud, latitud]);
 
       const mapInstance = new mapboxgl.Map({
         container: mapContainerRef.current,
@@ -72,23 +70,10 @@ const MyMap = () => {
     }
   }, []);
 
-  // Función para centrar el mapa en la ubicación del usuario
-  const volverALaUbicacionDelUsuario = () => {
-    if (userCoords && map && marker) {
-      map.flyTo({ center: userCoords, zoom: 18 }); // Vuelve a centrar en la ubicación del usuario
-      marker.setLngLat(userCoords); // Mueve el marcador a la ubicación del usuario
-    }
-  };
 
   return (
     <div>
       <div ref={mapContainerRef} style={{ width: "100%", height: "500px" }} />
-      <button
-        onClick={volverALaUbicacionDelUsuario}
-        className="fixed top-4 left-4 z-10 bg-black text-white py-2 px-4 rounded-lg shadow-lg hover:bg-gray-700 focus:outline-none"
-      >
-        Ubicación Actual
-      </button>
     </div>
   );
 };
