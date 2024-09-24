@@ -61,7 +61,7 @@ const LoginModal = ({ isOpen, onRequestClose }) => {
       ) : (
         <>
           <h2 className="text-xl font-bold mb-4">Registrar usuario</h2>
-          <NewUser onRequestClose={onRequestClose} />
+          <NewUser />
           <p className="mt-4 text-center">
             ¿Ya tienes una cuenta?{" "}
             <button

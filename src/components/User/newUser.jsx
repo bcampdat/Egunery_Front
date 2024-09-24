@@ -4,7 +4,7 @@ import { FaUserAstronaut, FaUserNinja, FaUserSecret } from "react-icons/fa";
 import { UserContext } from "../auth/userContext"; 
 import { useNavigate } from "react-router-dom"; 
 
-const NewUser = ({ onRequestClose }) => {
+const NewUser = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -39,12 +39,10 @@ const NewUser = ({ onRequestClose }) => {
             loginUser(loginResponse.data.user, loginResponse.data.token);
             setError("");
             // Redirigir a la página principal (home) después del login exitoso
-            
             navigate("/home");
-            onRequestClose(); 
           })
           .catch((loginError) => {
-            setError("Error al iniciar sesión.");
+            setError("");
           });
       })
       .catch((error) => {
