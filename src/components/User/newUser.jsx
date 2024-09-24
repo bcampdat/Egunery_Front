@@ -28,6 +28,9 @@ const NewUser = () => {
         console.log(response.data);
         setSuccess("Usuario creado exitosamente!");
 
+        setTimeout(() => {
+          console.log("Intentando iniciar sesión con:", { username, password }); // Verifica qué se envía en la solicitud de login
+
         // Iniciar sesión automáticamente después del registro
         axios
           .post(`/api/users/login`, {
@@ -44,6 +47,7 @@ const NewUser = () => {
           .catch((loginError) => {
             setError("");
           });
+        }, 2000); // Cerrar aquí el setTimeout correctamente
       })
       .catch((error) => {
         console.error(error);
@@ -51,6 +55,8 @@ const NewUser = () => {
         setSuccess("");
       });
   };
+
+
 
   return (
     <div className="max-w-md mx-auto p-4 bg-white rounded-lg shadow-md">
@@ -153,5 +159,7 @@ const NewUser = () => {
     </div>
   );
 };
+
+
 
 export default NewUser;
