@@ -120,7 +120,7 @@ const Blog = () => {
     <div className="admin-blog-wrapper mx-auto p-4" key={i}>
       <BlogItem blogItem={blogItem} />
       {user && blogItem.usuario_id === user.id_users && (
-        <div className="admin-blog-icons flex justify-center space-x-4 mt-4">
+        <div className="admin-blog-icons flex flex-row lg:flex-col flex justify-center space-x-4 lg:space-x-0 lg:space-y-4 mt-4">
           <button
             className="edit"
             onClick={() => handleEditBlogClick(blogItem)}
