@@ -85,7 +85,7 @@ const MyMap = () => {
       <div ref={mapContainerRef} style={{ width: "100%", height: "500px" }} />
       <button
         onClick={volverALaUbicacionDelUsuario}
-        className="absolute top-4 left-4 z-10 bg-black text-white py-2 px-4 rounded-lg shadow-lg hover:bg-gray-700 focus:outline-none"
+        className="fixed top-4 left-4 z-10 bg-black text-white py-2 px-4 rounded-lg shadow-lg hover:bg-gray-700 focus:outline-none"
       >
         Ubicación Actual
       </button>
