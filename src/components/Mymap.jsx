@@ -62,7 +62,7 @@ const MyMap = () => {
         map.flyTo({ center: [longitud, latitud] });
       }
     }
-  }, [marker, map, user]); 
+  }, []); 
 
   return (
     <div>
