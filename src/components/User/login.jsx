@@ -1,108 +1,147 @@
 import React, { useState, useContext } from "react";
 import axios from "axios";
-import { UserContext } from "../auth/userContext";
 import { FaUserAstronaut, FaUserNinja, FaUserSecret } from "react-icons/fa";
-import { CgUserlane } from "react-icons/cg";
+import { UserContext } from "../auth/userContext"; 
+import { useNavigate } from "react-router-dom"; 
 
-const Login = () => {
+const NewUser = ({ onRequestClose }) => {
   const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const { user, loginUser } = useContext(UserContext);
+  const [fotoUsers, setFotoUsers] = useState("astronauta"); // Astronauta por defecto
+  const { loginUser } = useContext(UserContext); 
+  const [error, setError] = useState(""); // Manejo general de errores
+  const [success, setSuccess] = useState(""); // Manejo de mensajes de éxito
+  const navigate = useNavigate(); // Para redirigir al usuario
 
-  const handleLogin = (event) => {
+  const submitUser = (event) => {
     event.preventDefault();
 
+    setError(""); // Limpiar errores previos
+    setSuccess(""); // Limpiar mensajes de éxito previos
+
+    // 1. Registrar el usuario
     axios
-      .post(`${import.meta.env.VITE_BACKEND_URL}/api/users/login`, {
-        username: username,
-        password: password,
+      .post(`${import.meta.env.VITE_BACKEND_URL}/api/users/create`, {
+        username,
+        email,
+        password,
+        foto_users: fotoUsers,
       })
       .then((response) => {
         console.log(response.data);
+        setSuccess("Usuario creado exitosamente!");
 
-        // Guardar el usuario y el token en el contexto
-        loginUser(response.data.user, response.data.token);
-        setError("");
+        // 2. Intentar iniciar sesión automáticamente después del registro
+        return axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/users/login`, {
+          username,
+          password,
+        });
+      })
+      .then((loginResponse) => {
+        // Llamamos a loginUser del contexto para guardar los datos del usuario y token
+        loginUser(loginResponse.data.user, loginResponse.data.token);
+        setError(""); // Limpiar cualquier error previo
+        // Redirigir a la página principal (home) después del login exitoso
+        navigate("/home");
+        onRequestClose(); // Cerrar el modal
       })
       .catch((error) => {
         console.error(error);
-        setError("Error al iniciar sesión. Verifique sus credenciales.");
+        // Manejar errores tanto de registro como de login
+        if (error.response && error.response.status === 404) {
+          setError("No se pudo conectar con el servidor. Verifique la URL.");
+        } else if (error.response && error.response.status === 400) {
+          setError("Error de validación. Verifique los datos.");
+        } else {
+          setError("Error inesperado. Inténtelo nuevamente.");
+        }
       });
-  };
-
-  // Función para mostrar el ícono correcto o el astronauta por defecto
-  const renderIcon = () => {
-    if (user && user.foto_users) {
-      switch (user.foto_users) {
-        case "astronauta":
-          return <FaUserAstronaut className="w-24 h-24 text-gray-700" />;
-        case "ninja":
-          return <FaUserNinja className="w-24 h-24 text-gray-700" />;
-        case "secreto":
-          return <FaUserSecret className="w-24 h-24 text-gray-700" />;
-        default:
-          return <FaUserAstronaut className="w-24 h-24 text-gray-700" />;
-      }
-    }
-    // Si no hay foto_users, mostrar astronauta por defecto
-    return <FaUserAstronaut className="w-24 h-24 text-gray-700" />;
   };
 
   return (
     <div className="max-w-md mx-auto p-4 bg-white rounded-lg shadow-md">
-      <h2 className="text-2xl font-bold mb-4">Iniciar sesión</h2>
+      <h2 className="text-2xl font-bold mb-4">Crear usuario</h2>
       {error && <div className="text-red-500 mb-4">{error}</div>}
-      {!user ? (
-        <form className="flex flex-col" onSubmit={handleLogin}>
-          <CgUserlane className="w-10 h-10 md:w-16 md:h-16 mx-auto text-center text-gray-700 mb-4" />
-          <div className="mb-4">
-            <label
-              className="block text-gray-700 text-sm font-bold mb-2"
-              htmlFor="username"
-            >
-              Usuario
-            </label>
-            <input
-              type="text"
-              id="username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              className="appearance-none bg-white p-2 text-sm text-gray-700 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600"
-            />
-          </div>
-          <div className="mb-4">
-            <label
-              className="block text-gray-700 text-sm font-bold mb-2"
-              htmlFor="password"
-            >
-              Contraseña
-            </label>
-            <input
-              type="password"
-              id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="appearance-none bg-white p-2 text-sm text-gray-700 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600"
-              required
-            />
-          </div>
-          <button
-            type="submit"
-            className="bg-sky-400 hover:bg-sky-300 text-white font-bold py-2 px-4 rounded-lg mt-4"
-          >
-            Iniciar sesión
-          </button>
-        </form>
-      ) : (
-        <div className="flex flex-col items-center">
-          <h3 className="text-xl font-bold">{user.user_name}</h3>
-          {/* Renderizar el ícono basado en foto_users */}
-          {renderIcon()}
+      {success && <div className="text-green-500 mb-4">{success}</div>}
+      <form className="flex flex-col" onSubmit={submitUser}>
+        <div className="mb-4">
+          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
+            Nombre de usuario
+          </label>
+          <input
+            type="text"
+            id="username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            className="appearance-none bg-white p-2 text-sm text-gray-700 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600"
+            required
+          />
         </div>
-      )}
+        <div className="mb-4">
+          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
+            Correo electrónico
+          </label>
+          <input
+            type="email"
+            id="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="appearance-none bg-white p-2 text-sm text-gray-700 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600"
+            required
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
+            Contraseña
+          </label>
+          <input
+            type="password"
+            id="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="appearance-none bg-white p-2 text-sm text-gray-700 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600"
+            required
+          />
+        </div>
+
+        {/* Selector de íconos */}
+        <div className="mb-4">
+          <label className="block text-gray-700 text-sm font-bold mb-2">Selecciona un ícono</label>
+          <div className="flex justify-center space-x-4 mt-4">
+            <button
+              type="button"
+              onClick={() => setFotoUsers("astronauta")}
+              className={`p-2 rounded-full ${fotoUsers === "astronauta" ? "bg-gray-300" : ""}`}
+            >
+              <FaUserAstronaut className="w-8 h-8 text-gray-700" />
+            </button>
+            <button
+              type="button"
+              onClick={() => setFotoUsers("ninja")}
+              className={`p-2 rounded-full ${fotoUsers === "ninja" ? "bg-gray-300" : ""}`}
+            >
+              <FaUserNinja className="w-8 h-8 text-gray-700" />
+            </button>
+            <button
+              type="button"
+              onClick={() => setFotoUsers("secreto")}
+              className={`p-2 rounded-full ${fotoUsers === "secreto" ? "bg-gray-300" : ""}`}
+            >
+              <FaUserSecret className="w-8 h-8 text-gray-700" />
+            </button>
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          className="bg-sky-400 hover:bg-sky-300 text-white font-bold py-2 px-4 rounded-lg mt-4"
+        >
+          Registrar usuario
+        </button>
+      </form>
     </div>
   );
 };
 
-export default Login;
+export default NewUser;
