@@ -30,7 +30,7 @@ const NewUser = () => {
 
         // Iniciar sesión automáticamente después del registro
         axios
-          .post(`/api/users/login`, {
+          .post(`${import.meta.env.VITE_BACKEND_URL}/api/users/login`, {
             username,
             password,
           })
