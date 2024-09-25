@@ -1,10 +1,8 @@
 import React from "react";
-// import Logo from "../assets/Logo.png";
 
 const Footer = () => {
   return (
     <footer className="mt-10 dark:text-neutral-700 text-center lg:text-left">
-      {/* <img src={Logo} alt="" /> */}
       <div className="p-5 text-center text-amber-300">
         © 2024 Copyright
         <a
