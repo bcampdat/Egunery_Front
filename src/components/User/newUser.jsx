@@ -58,6 +58,7 @@ const NewUser = () => {
       {error && <div className="text-red-500 mb-4">{error}</div>}
       {success && <div className="text-green-500 mb-4">{success}</div>}
       <form className="flex flex-col" onSubmit={submitUser}>
+        <CgUserlane className="w-10 h-10 md:w-16 md:h-16 mx-auto text-center text-gray-700 mb-4" />
         <div className="mb-4">
           <label
             className="block text-gray-700 text-sm font-bold mb-2"
