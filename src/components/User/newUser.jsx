@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import axios from "axios";
 import { FaUserAstronaut, FaUserNinja, FaUserSecret } from "react-icons/fa";
+import { CgUserlane } from "react-icons/cg";
 import { UserContext } from "../auth/userContext"; 
 import { useNavigate } from "react-router-dom"; 
 
