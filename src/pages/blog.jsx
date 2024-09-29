@@ -26,7 +26,8 @@ const Blog = () => {
         withCredentials: true,
       })
       .then((response) => {
-        setBlogItems((prevItems) => prevItems.concat(response.data));
+        // setBlogItems((prevItems) => prevItems.concat(response.data));
+        setBlogItems((prevItems) => response.data.concat(prevItems));
         setTotalCount(response.data.length);
         setIsLoading(false);
       })
