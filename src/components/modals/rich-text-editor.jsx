@@ -23,10 +23,12 @@ const RichTextEditor = ({ value, onChange }) => {
       onChange={handleChange}
       modules={{
         toolbar: [
-          [{ header: [1, 2, false] }],
+          [{ 'font': [] }],
           ["bold", "italic", "underline", "strike"],
+          [{ 'color': [] }, { 'background': [] }],
           [{ list: "ordered" }, { list: "bullet" }],
-          ["link", "image"],
+          [{ 'align': [] }],
+          ["image"],
         ],
       }}
       placeholder="Escribe tu contenido aquí..."
@@ -34,10 +36,10 @@ const RichTextEditor = ({ value, onChange }) => {
   );
 };
 
-// Validación de props con PropTypes
+
 RichTextEditor.propTypes = {
-  value: PropTypes.string, // 'value' es opcional pero debe ser string si se proporciona
-  onChange: PropTypes.func.isRequired, // 'onChange' es obligatorio y debe ser una función
+  value: PropTypes.string, 
+  onChange: PropTypes.func.isRequired, 
 };
 
 export default RichTextEditor;
