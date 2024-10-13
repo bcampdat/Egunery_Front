@@ -10,27 +10,33 @@ const BlogForm = ({ post, isEdit, handleSuccessfulNewBlogSubmission }) => {
   const [title, setTitle] = useState(post ? post.title : "");
   const [content, setContent] = useState(post ? post.content : "");
   const [featuredImage, setFeaturedImage] = useState(null);
+  const [initialImage, setInitialImage] = useState(null); 
 
   useEffect(() => {
     if (isEdit && post) {
       setTitle(post.title);
       setContent(post.content);
-      setFeaturedImage(
-        post.featured_image
-          ? {
-              file: {
-                name: post.featured_image,
-                preview: `${import.meta.env.VITE_BACKEND_URL}${post.featured_image}`,
-              },
-            }
-          : null
-      );
+      if (post.featured_image) {
+        const photo = {
+          file: {
+            name: post.featured_image,
+            preview: `${import.meta.env.VITE_BACKEND_URL}${post.featured_image}`,
+          },
+        };
+        setFeaturedImage(photo);
+        setInitialImage(photo); 
+      }
     }
   }, [isEdit, post]);
 
   const handleImageChange = (files) => {
     setFeaturedImage(files[0]); // Guardamos el archivo en el estado
   };
+
+  const handleImageRemove = () => {
+    setFeaturedImage(null); // Eliminamos la imagen seleccionada
+  };
+
 
   const uploadImage = async (file) => {
     const formData = new FormData();
@@ -44,7 +50,7 @@ const BlogForm = ({ post, isEdit, handleSuccessfulNewBlogSubmission }) => {
           headers: { "Content-Type": "multipart/form-data" },
         }
       );
-      return response.data.url; // Devolver la URL de la imagen subida
+      return `${import.meta.env.VITE_BACKEND_URL}${response.data.url}`; 
     } catch (error) {
       console.error("Error al subir la imagen:", error);
       return null;
@@ -61,8 +67,12 @@ const BlogForm = ({ post, isEdit, handleSuccessfulNewBlogSubmission }) => {
 
       if (featuredImage && featuredImage.file instanceof File) {
         formData.append("featured_image", featuredImage.file);
-      } else if (featuredImage && featuredImage.file.name) {
+      } else if (featuredImage?.file?.name) {
         formData.append("featured_image", featuredImage.file.name);
+      }
+
+      if (!featuredImage && initialImage) {
+        formData.append("remove_image", true); // Eliminar la imagen antigua
       }
 
       let postId;
@@ -133,6 +143,8 @@ const BlogForm = ({ post, isEdit, handleSuccessfulNewBlogSubmission }) => {
             onChange={handleImageChange}
             maxFiles={1}
             accept="image/*"
+            value={featuredImage ? [featuredImage] : []} 
+            behavior="replace" 
             className="border dark:text-white border-amber-300 rounded-md p-2 shadow-md"
           >
             {featuredImage && (
@@ -141,6 +153,7 @@ const BlogForm = ({ post, isEdit, handleSuccessfulNewBlogSubmission }) => {
                 alt="Imagen destacada"
                 width="200px"
                 height="200px"
+                onDelete={handleImageRemove} 
                 className="mt-2 p-2 rounded-md shadow-md border border-amber-300 dark:text-white"
               />
             )}
